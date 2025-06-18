@@ -6,6 +6,8 @@ import itemData from "./items.json"
 
 
 export default function ItemList() {
+
+    let categoriesOption = ["Produce", "Dairy", "Bakery", "Meat", "Frozen Foods", "Canned Goods", "Dry Goods", "Beverages", "Snacks", "Household", "Other"];
     
     let [sortBy, setSortBy] = useState("name");
     let buttonNameStyle = "bg-orange-500 p-1 m-2";
@@ -40,45 +42,14 @@ export default function ItemList() {
             if (nameA > nameB) return 1;
             return 0;
         });
-    
-    
-    let itemGrouped = [
-        {
-            id: 1,
-            name: "Bakery",
-            items: itemData.filter((item) => item.category == "bakery"),
-        },
-        {
-            id: 2,
-            name: "Canned Goods",
-            items: itemData.filter((item) => item.category == "canned goods"),
-        },
-        {
-            id: 3,
-            name: "Dairy",
-            items: itemData.filter((item) => item.category == "dairy"),
-        },
-        {
-            id: 4,
-            name: "Dry Goods",
-            items: itemData.filter((item) => item.category == "dry goods"),
-        },
-        {
-            id: 5,
-            name: "Household",
-            items: itemData.filter((item) => item.category == "bakery"),
-        },
-        {
-            id: 6,
-            name: "Meat",
-            items: itemData.filter((item) => item.category == "meat"),
-        },
-        {
-            id: 7,
-            name: "Produce",
-            items: itemData.filter((item) => item.category == "produce"),
-        },
-    ];
+
+    categoriesOption = categoriesOption.sort((a, b) => {
+        let nameA = a.toUpperCase();
+        let nameB = b.toUpperCase();
+        if (nameA < nameB) return -1;
+        if (nameA > nameB) return 1;
+        return 0;
+    });
 
     return(
         <section>
@@ -92,12 +63,19 @@ export default function ItemList() {
                 {(sortBy == "name" || sortBy == "category") &&
                     itemData.map((item) => <Item key={item.id} itemObj={item} />)}
                 {(sortBy == "group") &&
-                    itemGrouped.map((category) => 
-                        <div key={category.id}>
-                            <h3 className="text-2xl">{category.name}</h3>
-                            {category.items.map((item) => <Item key={item.id} itemObj={item} />)}
-                        </div>
-                )}
+                    categoriesOption.map((category) => {
+                        let itemList = itemData.filter((item) => item.category === category.toLowerCase());
+                            if (itemList.length === 0) return null
+                            else 
+                            {
+                                return (
+                                    <div key={category}>
+                                        <h3 className="text-2xl">{category}</h3>
+                                        {itemList.map((item) => <Item key={item.id} itemObj={item} />)}
+                                    </div>
+                                );
+                            }         
+                        })}
             </div>
         </section>
     )
