@@ -27,7 +27,7 @@ export default function Page() {
 
     return (
         <main>
-            <h1 className="text-3xl font-bold m-2">Shopping List</h1>
+            <h1 className="text-3xl font-bold m-5">Shopping List</h1>
             <div className="flex">
                 <div className="flex-1 max-w-sm mx-5">
                     <NewItemPage onAddItem={handleAddItem} />

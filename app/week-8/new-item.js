@@ -49,7 +49,7 @@ export default function NewItemPage({onAddItem}) {
     }
 
     return(
-        <form className="p-2 bg-slate-900 my-5 max-w-sm w-full" onSubmit={handleSubmit}>
+        <form className="p-2 bg-slate-900 mb-5 max-w-sm w-full" onSubmit={handleSubmit}>
             <div className="mb-2">
                 <input 
                     className="w-full border-2 border-gray-300 p-3 rounded-lg bg-white text-black" 
