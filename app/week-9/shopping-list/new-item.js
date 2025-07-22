@@ -68,7 +68,6 @@ export default function NewItemPage({onAddItem}) {
                 </div>
                 <select 
                     className="p-2 my-1 rounded-lg border-gray-300 border-2 bg-white w-40 text-black" 
-                    value={category} 
                     onChange={handleCategoryChange}>
                         <option disabled>Category</option>
                         {categoriesOption.map((cat) => <option key={cat} value={cat}>{cat}</option>)}

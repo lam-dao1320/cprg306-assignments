@@ -43,9 +43,14 @@ export default function Page() {
                 <div className="ml-5">
                     <p>Sign in as {user.displayName} {"\n"} ({user.email})</p>
                     <img src={user.photoURL} className="w-20 h-20 my-3" />
+                    <p>
+                        <Link href="./week-9/shopping-list" className="hover:text-green-400 hover:underline">
+                            Go to Shopping List
+                        </Link>
+                    </p>
                     <button
                     onClick={handleSignOut}
-                    className="text-sm bg-white text-black border-1 border-black rounded px-2 py-1" 
+                    className="text-sm bg-white text-black border-1 border-black rounded px-2 py-1 my-4" 
                     type="button">Sign Out</button>
                 </div>
                 
